@@ -71,6 +71,28 @@ const getAnchorAndDir = (
     }
 };
 
+interface LightRaysUniformValue<T> {
+    value: T;
+}
+
+interface LightRaysUniforms {
+    iTime: LightRaysUniformValue<number>;
+    iResolution: LightRaysUniformValue<number[]>;
+    rayPos: LightRaysUniformValue<number[]>;
+    rayDir: LightRaysUniformValue<number[]>;
+    raysColor: LightRaysUniformValue<number[]>;
+    raysSpeed: LightRaysUniformValue<number>;
+    lightSpread: LightRaysUniformValue<number>;
+    rayLength: LightRaysUniformValue<number>;
+    pulsating: LightRaysUniformValue<number>;
+    fadeDistance: LightRaysUniformValue<number>;
+    saturation: LightRaysUniformValue<number>;
+    mousePos: LightRaysUniformValue<number[]>;
+    mouseInfluence: LightRaysUniformValue<number>;
+    noiseAmount: LightRaysUniformValue<number>;
+    distortion: LightRaysUniformValue<number>;
+}
+
 const LightRays: React.FC<LightRaysProps> = ({
                                                  raysOrigin = "top-center",
                                                  raysColor = DEFAULT_COLOR,
@@ -87,12 +109,12 @@ const LightRays: React.FC<LightRaysProps> = ({
                                                  className = "",
                                              }) => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const uniformsRef = useRef<any>(null);
+    const uniformsRef = useRef<LightRaysUniforms | null>(null);
     const rendererRef = useRef<Renderer | null>(null);
     const mouseRef = useRef({ x: 0.5, y: 0.5 });
     const smoothMouseRef = useRef({ x: 0.5, y: 0.5 });
     const animationIdRef = useRef<number | null>(null);
-    const meshRef = useRef<any>(null);
+    const meshRef = useRef<Mesh | null>(null);
     const cleanupFunctionRef = useRef<(() => void) | null>(null);
     const [isVisible, setIsVisible] = useState(false);
     const observerRef = useRef<IntersectionObserver | null>(null);

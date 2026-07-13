@@ -224,13 +224,14 @@
       .booking {
         @apply flex-1 w-full p-4 border-l border-gray-700;
 
-        .signup-card {
-          @apply bg-dark-100 border-dark-200 card-shadow flex w-full flex-col gap-6 rounded-[10px] border px-5 py-6;
+        .signup-card-container {
+          @apply w-full;
         }
       }
     }
 
     h2 {
+
       @apply font-schibsted-grotesk text-2xl font-bold;
     }
 

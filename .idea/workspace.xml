@@ -7,7 +7,9 @@
     <list default="true" id="243f5006-1eac-46e0-8942-8ae1a64e6628" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/LightRays.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/component/LightRays.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/booking.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/booking.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/event.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/database/event.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -25,61 +27,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0015877697706301" />
-      <entry key="MS500" value="1.773512998017782" />
-      <entry key="S2" value="4.060808046697788" />
-      <entry key="S5" value="5.100138681161945" />
-      <entry key="S10" value="5.526153906447799" />
-      <entry key="S30" value="5.836395958958321" />
-      <entry key="S60" value="5.917468731502746" />
-      <entry key="M2" value="5.959980255074482" />
-      <entry key="M5" value="6.435047687314896" />
-      <entry key="M10" value="9.608904755862989" />
-      <entry key="M15" value="13.441811667321852" />
-      <entry key="M30" value="21.940604067145486" />
-      <entry key="H1" value="33.480715024608855" />
-      <entry key="H2" value="61.23559507177134" />
-      <entry key="H4" value="145.45157796916774" />
-      <entry key="D1" value="508.9388264828083" />
-      <entry key="W1" value="660.7310442539997" />
+      <entry key="MS100" value="1.0000003059943003" />
+      <entry key="MS500" value="1.0551387853642196" />
+      <entry key="S2" value="1.904212933810376" />
+      <entry key="S5" value="2.819674880914602" />
+      <entry key="S10" value="3.386450199355421" />
+      <entry key="S30" value="5.847469874223964" />
+      <entry key="S60" value="9.94687878640041" />
+      <entry key="M2" value="15.17141533255063" />
+      <entry key="M5" value="23.250145105877525" />
+      <entry key="M10" value="32.07866689397237" />
+      <entry key="M15" value="41.20645416617414" />
+      <entry key="M30" value="70.52231100768643" />
+      <entry key="H1" value="112.06988679792725" />
+      <entry key="H2" value="152.7764133497912" />
+      <entry key="H4" value="205.8813206129191" />
+      <entry key="D1" value="670.3740866514477" />
+      <entry key="W1" value="1205.0448696788415" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="9.282921689715662E-284" />
-      <entry key="S5" value="6.124545631078639E-114" />
-      <entry key="S10" value="2.4747819360660117E-57" />
-      <entry key="S30" value="1.3526298869392624E-19" />
-      <entry key="S60" value="3.6778116957496093E-10" />
-      <entry key="M2" value="1.9177621582849132E-5" />
-      <entry key="M5" value="0.012975314640101671" />
-      <entry key="M10" value="0.1139092386073314" />
-      <entry key="M15" value="0.23498454503953992" />
-      <entry key="M30" value="0.4847771084415466" />
-      <entry key="H1" value="0.715953903223163" />
-      <entry key="H2" value="1.8205492798987553" />
-      <entry key="H4" value="8.851659531905831" />
-      <entry key="D1" value="50.44091991210474" />
-      <entry key="W1" value="69.9926720584458" />
+      <entry key="MS100" value="5.026002594447284E-36" />
+      <entry key="MS500" value="8.714541485309798E-8" />
+      <entry key="S2" value="0.01718150303195308" />
+      <entry key="S5" value="0.19706336906532046" />
+      <entry key="S10" value="0.4653103533520298" />
+      <entry key="S30" value="1.240525910830459" />
+      <entry key="S60" value="2.010809538713314" />
+      <entry key="M2" value="2.773299311810731" />
+      <entry key="M5" value="3.904758779213526" />
+      <entry key="M10" value="5.46091476641961" />
+      <entry key="M15" value="6.905326028079936" />
+      <entry key="M30" value="10.80690022125609" />
+      <entry key="H1" value="15.845575587861076" />
+      <entry key="H2" value="20.59041029874769" />
+      <entry key="H4" value="26.478630125879043" />
+      <entry key="D1" value="73.27182004231528" />
+      <entry key="W1" value="129.11145896640468" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.04163792577423006" />
-      <entry key="MS500" value="1.2907516364218063" />
-      <entry key="S2" value="3.9030608347908142" />
-      <entry key="S5" value="5.032799102957834" />
-      <entry key="S10" value="5.491700754090838" />
-      <entry key="S30" value="5.824729310846172" />
-      <entry key="S60" value="5.911612082513183" />
-      <entry key="M2" value="5.957064137811652" />
-      <entry key="M5" value="6.446516060495703" />
-      <entry key="M10" value="9.720631345635807" />
-      <entry key="M15" value="13.674125262491303" />
-      <entry key="M30" value="22.42272523996336" />
-      <entry key="H1" value="34.19469084062824" />
-      <entry key="H2" value="63.05419825686769" />
-      <entry key="H4" value="154.29991598243802" />
-      <entry key="D1" value="559.3771447883095" />
-      <entry key="W1" value="730.7232158216392" />
+      <entry key="MS100" value="0.01052526256708483" />
+      <entry key="MS500" value="0.4155268091606038" />
+      <entry key="S2" value="1.3991199603727742" />
+      <entry key="S5" value="2.5356243570225403" />
+      <entry key="S10" value="3.4716793800444146" />
+      <entry key="S30" value="6.857679053562584" />
+      <entry key="S60" value="11.79317816751176" />
+      <entry key="M2" value="17.836489527610585" />
+      <entry key="M5" value="27.094996998482852" />
+      <entry key="M10" value="37.49860754691185" />
+      <entry key="M15" value="48.077314325154966" />
+      <entry key="M30" value="81.30163172431567" />
+      <entry key="H1" value="127.89476518578493" />
+      <entry key="H2" value="173.35306961136044" />
+      <entry key="H4" value="232.35055191866786" />
+      <entry key="D1" value="743.6412587105411" />
+      <entry key="W1" value="1334.1552191627095" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -91,31 +93,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "implement-posthog",
-    "javascript.preferred.runtime.type.id": "node",
-    "js.debugger.nextJs.config.created.client": "true",
-    "js.debugger.nextJs.config.created.server": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "ml.llm.LLMThirdPartyAiProvidersConfigurable",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2026.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;api-routes&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.LLMThirdPartyAiProvidersConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2026.1.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\a4ayu\OneDrive\Desktop\nextjs_firstproject\app" />
@@ -155,11 +158,15 @@
       <workItem from="1783696681898" duration="40000" />
       <workItem from="1783696801173" duration="8398000" />
       <workItem from="1783748617702" duration="7401000" />
-      <workItem from="1783765869033" duration="9855000" />
+      <workItem from="1783765869033" duration="23769000" />
+      <workItem from="1783870326478" duration="15218000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="next.config.ts" />
   </component>
 </project>

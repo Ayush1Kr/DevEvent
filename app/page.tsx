@@ -18,13 +18,15 @@ const Page = async () => {
 
     let events = [];
     try {
-        const response = await fetch(`${BASE_URL}/api/events`);
-        if (response.ok) {
-            const data = await response.json();
-            events = data?.events || [];
-        }
+        const connectDB = (await import('@/lib/mongodb')).default;
+        const { Event } = await import('@/database');
+        
+        await connectDB();
+        const data = await Event.find().sort({ createdAt: -1 }).lean();
+        // Convert MongoDB ObjectIds to strings so they can be passed to Client Components safely
+        events = JSON.parse(JSON.stringify(data)) || [];
     } catch (e) {
-        console.error("Fetch error:", e);
+        console.error("Database fetch error:", e);
     }
 
 

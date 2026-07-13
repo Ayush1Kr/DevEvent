@@ -1,18 +1,18 @@
-import {NextRequest, NextResponse} from 'next/server';
-import {v2 as cloudinary}  from 'cloudinary';
+import { NextRequest, NextResponse } from 'next/server';
+import { v2 as cloudinary } from 'cloudinary';
 import connectDB from '@/lib/mongodb'
 import { Event } from '@/database';
 
 // Configure Cloudinary using explicit env vars
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
-    api_key:    process.env.CLOUDINARY_API_KEY!,
+    api_key: process.env.CLOUDINARY_API_KEY!,
     api_secret: process.env.CLOUDINARY_API_SECRET!,
     secure: true,
 });
 
 export async function POST(req: NextRequest) {
-    try{
+    try {
         // Ensure the database is connected before performing any operations
         await connectDB();
 
@@ -22,11 +22,11 @@ export async function POST(req: NextRequest) {
 
         let event;
 
-        try{
+        try {
             // Convert the form fields (title, description, venue, etc.) into a plain JavaScript object
             event = Object.fromEntries(formData.entries());
         } catch {
-            return NextResponse.json({message:'Invalid JSON data format'},{status:400});
+            return NextResponse.json({ message: 'Invalid JSON data format' }, { status: 400 });
         }
 
         // Validate that the image field exists and is actually a File/Blob, not a text string
@@ -38,6 +38,9 @@ export async function POST(req: NextRequest) {
         }
 
         const file = imageField as File;
+
+        let tags = JSON.parse(formData.get('tags') as string);
+        let agenda = JSON.parse(formData.get('agenda') as string);
 
         // Convert the File into a Node.js Buffer so it can be streamed to Cloudinary
         const arrayBuffer = await file.arrayBuffer();
@@ -52,19 +55,23 @@ export async function POST(req: NextRequest) {
                     upload_preset: 'nextjs-crash-course', // Matches your "Signed" preset in Cloudinary
                 },
                 (error, result) => {
-                    if(error) return reject(error);
+                    if (error) return reject(error);
                     resolve(result);
                 }
             ).end(buffer);
         });
 
         // Attach the Cloudinary secure image URL to the event object before saving to the database
-        event.image = (uploadResult as {secure_url:string}).secure_url;
+        event.image = (uploadResult as { secure_url: string }).secure_url;
 
         // Save the complete event data into MongoDB
-        const createdEvent = await Event.create(event);
+        const createdEvent = await Event.create({
+            ...event,
+            tags,
+            agenda
+        });
 
-        return NextResponse.json({message:'Event Successfully created',event: createdEvent},{status:201});
+        return NextResponse.json({ message: 'Event Successfully created', event: createdEvent }, { status: 201 });
 
     } catch (e) {
         // Log the full error details to the server console and send a readable message back to the client
@@ -80,15 +87,15 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-    try{
+    try {
 
         await connectDB();
 
         const events = await Event.find().sort({ createdAt: -1 });
-        return NextResponse.json({message:'Events fetched successfully', events}, {status: 200});
+        return NextResponse.json({ message: 'Events fetched successfully', events }, { status: 200 });
 
     } catch (e) {
-        return NextResponse.json({message: 'Event fetching failed', error: e}, { status: 500 });
+        return NextResponse.json({ message: 'Event fetching failed', error: e }, { status: 500 });
     }
 }
 

@@ -88,9 +88,10 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
     try {
-
+        // Ensure database connection before querying
         await connectDB();
 
+        // Fetch all events and sort by newest first
         const events = await Event.find().sort({ createdAt: -1 });
         return NextResponse.json({ message: 'Events fetched successfully', events }, { status: 200 });
 

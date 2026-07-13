@@ -7,7 +7,13 @@ import { cacheLife } from 'next/cache';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
 const Page = async () => {
+    // Next.js 15 Caching Directive:
+    // Enables the new experimental caching model for this page component.
+    // It caches the entire rendered output of this Server Component.
     'use cache';
+
+    // Configures the cache duration. The 'hours' preset keeps the data 
+    // fresh for a longer period (useful for slowly changing data like events).
     cacheLife('hours')
 
     let events = [];

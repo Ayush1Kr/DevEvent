@@ -4,6 +4,7 @@ import BookEvent from '@/component/BookEvent';
 import { getSimilarEventsBySlug } from '@/lib/actions/event.actions';
 import { IEvent } from '@/database';
 import EventCard from '@/component/EventCard';
+import { cacheLife } from 'next/cache';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
@@ -34,6 +35,13 @@ const EventTags = ({ tags }: { tags: string[] }) => (
 )
 
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+    // Next.js 15: Explicitly opt this component into the new caching semantics.
+    // This tells Next.js to cache the output of this Server Component.
+    'use cache'
+
+    // Next.js 15: Define how long this cache should live. 
+    // 'hours' is a preset that dictates the stale-while-revalidate duration.
+    cacheLife('hours');
 
     const { slug } = await params;
     let event = null;
@@ -113,7 +121,14 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
                             <p className="text-sm">Be the first to book the spot!</p>
                         )}
 
-                        <BookEvent />
+                        {/* 
+                          We use event._id here instead of event.id. 
+                          Why? Because the API route fetches the event using Mongoose's `.lean()` method, 
+                          which returns a plain JavaScript object representing the MongoDB document. 
+                          Plain MongoDB documents only have the native `_id` field; the `.id` field is a 
+                          virtual getter that Mongoose only adds to full Document instances.
+                        */}
+                        <BookEvent eventId={event._id} slug={event.slug} />
                     </div>
                 </aside>
             </div>
@@ -122,7 +137,12 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
                 <h2>Similar Events</h2>
                 <div className="events">
                     {similarEvents.length > 0 && similarEvents.map((similarEvents: IEvent) => (
-                        <EventCard key={String(similarEvents._id)} {...similarEvents} />
+                        {/* 
+                          We wrap similarEvents._id in String() because React keys must be strings or numbers. 
+                          MongoDB ObjectIds (even when retrieved from the DB) are objects, 
+                          so passing them directly causes a TypeScript/React warning.
+                        */}
+                        < EventCard key = { String(similarEvents._id)} {...similarEvents} />
                     ))}
                 </div>
             </div>

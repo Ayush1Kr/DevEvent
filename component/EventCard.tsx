@@ -12,7 +12,9 @@ interface Props {
     time: string;
 }
 
-const EventCard = ({title, image, slug, location, date, time}: Props) => {
+const EventCard = ({ title, image, slug, location, date, time }: Props) => {
+    // We use an onClick handler to track user interactions for analytics.
+    // Since this uses posthog, the file must be marked with 'use client' at the top.
     const handleClick = () => {
         posthog.capture('event_card_clicked', {
             event_title: title,

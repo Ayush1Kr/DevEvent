@@ -4,6 +4,8 @@ import posthog from 'posthog-js';
 
 const ExploreBtn = () => {
     const handleClick = () => {
+        // Because this component uses an onClick event handler to trigger PostHog tracking,
+        // it must be a Client Component ('use client').
         console.log('CLICK');
         posthog.capture('explore_events_clicked');
     };
@@ -12,7 +14,7 @@ const ExploreBtn = () => {
         <button type='button' id='explore-btn' className='mt-7 mx-auto' onClick={handleClick}>
             <a href='#events'>
                 Explore Events
-                <Image src='/icons/arrow-down.svg' alt='arrow-down' width={24} height={24}/>
+                <Image src='/icons/arrow-down.svg' alt='arrow-down' width={24} height={24} />
             </a>
         </button>
     )

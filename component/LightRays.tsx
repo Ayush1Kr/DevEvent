@@ -3,6 +3,13 @@
 import { useRef, useEffect, useState } from "react";
 import { Renderer, Program, Triangle, Mesh } from "ogl";
 
+/**
+ * LightRays Component
+ * 
+ * This is a highly optimized WebGL-based component that uses the `ogl` library to render
+ * dynamic, animated light rays in the background. It utilizes custom fragment and vertex shaders
+ * to compute ray spread, distortion, and mouse interaction at 60fps without burdening the DOM.
+ */
 export type RaysOrigin =
     | "top-center"
     | "top-center-offset"
@@ -94,20 +101,20 @@ interface LightRaysUniforms {
 }
 
 const LightRays: React.FC<LightRaysProps> = ({
-                                                 raysOrigin = "top-center",
-                                                 raysColor = DEFAULT_COLOR,
-                                                 raysSpeed = 1,
-                                                 lightSpread = 1,
-                                                 rayLength = 2,
-                                                 pulsating = false,
-                                                 fadeDistance = 1.0,
-                                                 saturation = 1.0,
-                                                 followMouse = true,
-                                                 mouseInfluence = 0.1,
-                                                 noiseAmount = 0.0,
-                                                 distortion = 0.0,
-                                                 className = "",
-                                             }) => {
+    raysOrigin = "top-center",
+    raysColor = DEFAULT_COLOR,
+    raysSpeed = 1,
+    lightSpread = 1,
+    rayLength = 2,
+    pulsating = false,
+    fadeDistance = 1.0,
+    saturation = 1.0,
+    followMouse = true,
+    mouseInfluence = 0.1,
+    noiseAmount = 0.0,
+    distortion = 0.0,
+    className = "",
+}) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const uniformsRef = useRef<LightRaysUniforms | null>(null);
     const rendererRef = useRef<Renderer | null>(null);

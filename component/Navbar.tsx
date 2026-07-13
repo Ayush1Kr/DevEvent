@@ -3,6 +3,9 @@ import Image from 'next/image';
 import Logo from '@/public/icons/logo.png'
 
 
+// This is a Server Component by default since it has no 'use client' directive.
+// It uses Next.js optimized <Link> for client-side navigation (no full page reload)
+// and <Image> for automatic image optimization (lazy loading, resizing, WebP conversion).
 const Navbar = () => {
     return (
         <header>

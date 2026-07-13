@@ -1,18 +1,30 @@
 'use client';
 
+import { createBooking } from "@/lib/actions/booking.actions";
+import posthog from "posthog-js";
 import { useState } from "react"
 
-const BookEvent = () => {
+const BookEvent = ({ eventId, slug }: { eventId: string, slug: string }) => {
 
     const [email, setEmail] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        // Call our Next.js Server Action directly from this Client Component.
+        // This securely executes the database logic on the server without needing to create a separate API route.
+        const { success, error } = await createBooking({ eventId, slug, email })
 
-        setTimeout(() => {
+        if (success) {
             setSubmitted(true);
-        }, 1000);
+            // Track the successful booking event using PostHog analytics
+            posthog.capture('event_booking', { event_id: eventId, slug, email });
+        } else {
+            console.log(error);
+            // Track the error if the booking fails, passing relevant context to PostHog
+            posthog.captureException(error, { event_id: eventId, slug, email });
+        }
+
     }
 
     return (

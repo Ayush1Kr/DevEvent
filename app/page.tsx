@@ -1,11 +1,14 @@
 import React from 'react'
 import ExploreBtn from '@/component/ExploreBtn'
 import EventCard from '@/component/EventCard'
-import {IEvent} from '@/database/event.model'
+import { IEvent } from '@/database/event.model'
+import { cacheLife } from 'next/cache';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
 const Page = async () => {
+    'use cache';
+    cacheLife('hours')
 
     let events = [];
     try {
@@ -21,16 +24,16 @@ const Page = async () => {
 
     return (
         <section>
-            <h1 className="text-center">The Hub for Every Dev <br/> Event You Can&apos;t Miss</h1>
+            <h1 className="text-center">The Hub for Every Dev <br /> Event You Can&apos;t Miss</h1>
             <p className='text-center mt-5'>Hackathons, Meetups and Conferences, All in One Place</p>
 
-            <ExploreBtn/>
+            <ExploreBtn />
 
             <div className='mt-20 space-y-7'>
                 <h3>Featured Events</h3>
                 <ul className='events'>
                     {events && events.length > 0 && events.map((item: IEvent) => (
-                        <li key={item.title}><EventCard {...item}/></li>
+                        <li key={item.title} className='list-none'><EventCard {...item} /></li>
                     ))}
                 </ul>
             </div>

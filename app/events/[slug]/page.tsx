@@ -46,13 +46,15 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
     const { slug } = await params;
     let event = null;
     try {
-        const request = await fetch(`${BASE_URL}/api/events/${slug}`);
-        if (request.ok) {
-            const data = await request.json();
-            event = data?.event;
-        }
+        const connectDB = (await import('@/lib/mongodb')).default;
+        const { Event } = await import('@/database');
+        
+        await connectDB();
+        const data = await Event.findOne({ slug }).lean();
+        // Convert MongoDB ObjectIds to strings
+        event = data ? JSON.parse(JSON.stringify(data)) : null;
     } catch (e) {
-        console.error("Fetch error:", e);
+        console.error("Database fetch error:", e);
     }
 
     if (!event) return notFound();

@@ -137,12 +137,12 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
                 <h2>Similar Events</h2>
                 <div className="events">
                     {similarEvents.length > 0 && similarEvents.map((similarEvents: IEvent) => (
-                        {/* 
+                        /* 
                           We wrap similarEvents._id in String() because React keys must be strings or numbers. 
                           MongoDB ObjectIds (even when retrieved from the DB) are objects, 
                           so passing them directly causes a TypeScript/React warning.
-                        */}
-                        < EventCard key = { String(similarEvents._id)} {...similarEvents} />
+                        */
+                        <EventCard key={String(similarEvents._id)} {...similarEvents} />
                     ))}
                 </div>
             </div>

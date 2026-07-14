@@ -41,7 +41,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
+        <div className="fixed inset-0 z-[-1]">
           <LightRays
             raysOrigin="top-center"
             raysColor="#5dfeca"
@@ -52,7 +52,7 @@ export default function RootLayout({
             mouseInfluence={0.05}
             noiseAmount={0}
             distortion={0}
-            className="custom-rays"
+            className="custom-rays w-full h-full"
             pulsating={false}
             fadeDistance={1}
             saturation={1}
